@@ -21,7 +21,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar sticky-top navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand d-flex" href="{{ url('/') }}">
                     <div><img src="/assets/logo.png" style="height: 30px;" class="pr-2"></div>
@@ -87,6 +87,11 @@
         <main class="py-4">
             @yield('content')
         </main>
+        <footer class="mt-auto py-3">
+            <div class="container">
+                <div class="text-muted text-center">Shelley Christie - 2020</div>
+            </div>
+        </footer>
     </div>
 </body>
 </html>
