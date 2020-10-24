@@ -14,7 +14,7 @@
     <div class="row d-flex justify-content-center">
         @for ($i = 0; $i < 7; $i++)
         <div class="col-3 pb-2 pt-3 m-3" style="border: 1px solid lightgray; background: white; text-align:center">
-            <a href="#" class="stretched-link"></a>
+            <a href="product" class="stretched-link"></a>
             <img src="" style="object-fit: cover; width:250px; height: 250px; border: 1px solid black; margin-bottom: 1em;">
             <h4 style="text-align: center;">ProductName</h4>
             <h6>Lorem ipsum dolor sit amet this is a 2 seater sofa</h6>

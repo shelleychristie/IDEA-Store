@@ -8,6 +8,7 @@ use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class RegisterController extends Controller
 {
@@ -49,10 +50,14 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+        $genderOptions = array("Male", "Female");
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:255', 'min:6'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => ['required', 'string', 'min:8', 'confirmed', 'alpha_num'],
+            'address' => ['required', 'string', 'min:10'],
+            'date-of-birth' => ['required', 'date', 'before:today'],
+            'gender' => ['required', 'string', Rule::in(['Male', 'Female']),],
         ]);
     }
 
