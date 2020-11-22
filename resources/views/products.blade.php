@@ -18,13 +18,13 @@
             <img src="" style="object-fit: cover; width:250px; height: 250px; border: 1px solid black; margin-bottom: 1em;">
             <h4 style="text-align: center;">ProductName</h4>
             <h6>Lorem ipsum dolor sit amet this is a 2 seater sofa</h6>
-            <h4 style="text-align: center;">Rp 2.500.000</h4>
+            <h4 style="text-align: center;">Rp 2.500.000</h4> 
             @auth
                 <div class="row d-flex pt-1 pb-3" style="justify-content: space-evenly">
                     <a href= "update" class="btn btn-primary pl-4 pr-4" style="z-index: 1;">Update</a>
                     <a href= "delete" class="btn btn-secondary pl-4 pr-4" style="z-index: 1;">Delete</a>
                 </div>
-            @endauth    
+            @endauth     
         </div>
         @endfor
         

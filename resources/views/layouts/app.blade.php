@@ -35,7 +35,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a href="home" class="nav-link ml-5">Home</a>
+                            <a href="/" class="nav-link ml-5">Home</a>
                         </li>
                     </ul>
 
@@ -62,8 +62,8 @@
                                     {{ Auth::user()->name }}
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a href="#" class="dropdown-item">Add product</a>
-                                    <a href="#" class="dropdown-item">Add product type</a>
+                                    <a href="/product/create" class="dropdown-item">Add product</a>
+                                    <a href="/productType/create" class="dropdown-item">Add product type</a>
                                     <a href="#" class="dropdown-item">Edit Profile</a>
                                     <a href="#" class="dropdown-item">Transaction History</a>
                                     <div class="dropdown-divider"></div>

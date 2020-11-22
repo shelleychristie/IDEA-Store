@@ -50,7 +50,6 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        $genderOptions = array("Male", "Female");
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255', 'min:6'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
@@ -73,6 +72,11 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'address' => $data['address'],
+            'date-of-birth' => $data['date-of-birth'],
+            'gender' => $data['gender'],
+            'role' => 'member',
+            // admins cannot register and have to add themselves manually into database
         ]);
     }
 }
