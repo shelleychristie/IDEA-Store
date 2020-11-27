@@ -9,9 +9,12 @@
         <div class="col-4 p-3" style="background: white">
             <div class="d-flex m-3 pt-3"><h2>{{$product->name}}</h2></div>
             <div class="d-flex m-3"><h6>{{$product->description}}</h6></div>
+            @php
+                $product->price = number_format($product->price);
+            @endphp
             <div class="d-flex m-3"><h4>Rp {{$product->price}}</h4></div>
             <div class="d-flex m-3"><h5>Stock: {{$product->stock}}</h5></div>
-            @auth
+            @if(Auth::check() && Auth()->user()->role == 'Member')
                 <hr style="width: 70%">
                     <form action="">
                         <div class="form-group d-flex justify-content-center align-items-baseline pt-3">
@@ -21,9 +24,9 @@
                         <div class="form-group d-flex justify-content-center pt-2">
                             <button class="btn btn-primary">Add to cart</button>
                         </div>
-                        
+                    {{-- <small>Product type = {{}}</small> --}}
                     </form>
-            @endauth
+            @endif
         </div>
     </div>
 </div>

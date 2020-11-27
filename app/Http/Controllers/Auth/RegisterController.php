@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Profile;
 use App\Providers\RouteServiceProvider;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -50,12 +51,13 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+        // dd($data);
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255', 'min:6'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed', 'alpha_num'],
+            'name' => ['required', 'string', 'max:255', 'min:6'],
             'address' => ['required', 'string', 'min:10'],
-            'date-of-birth' => ['required', 'date', 'before:today'],
+            'date_of_birth' => ['required', 'date', 'before:today'],
             'gender' => ['required', 'string', Rule::in(['Male', 'Female']),],
         ]);
     }
@@ -68,15 +70,21 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
+        $user = User::create([
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'address' => $data['address'],
-            'date-of-birth' => $data['date-of-birth'],
-            'gender' => $data['gender'],
-            'role' => 'member',
+            'role' => 'Member',
             // admins cannot register and have to add themselves manually into database
         ]);
+        $user->profile()->create([
+            'name' => $data['name'],
+            'address' => $data['address'],
+            'date_of_birth' => $data['date_of_birth'],
+            'gender' => $data['gender'],
+        ]);
+        
+        return $user;
     }
+
+
 }

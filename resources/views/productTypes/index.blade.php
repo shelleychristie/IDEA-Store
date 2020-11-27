@@ -17,12 +17,16 @@
         <a href="productType/{{$productType->id}}" class="stretched-link"></a>
         <img src="{{$productType->getImage()}}" style="object-fit: cover; width:250px; height: 250px; border: 1px solid black; margin-bottom: 1em;">
             <h4 style="text-align: center;">{{$productType->name}}</h4>
-            @auth
-            <div class="row d-flex pt-1 pb-3" style="justify-content: space-evenly">
-                <a href= "update" class="btn btn-primary pl-4 pr-4" style="z-index: 1;">Update</a>
-                <a href= "delete" class="btn btn-secondary pl-4 pr-4" style="z-index: 1;">Delete</a>
-            </div>
-            @endauth    
+            @if (Auth::check())
+                @if (Auth()->user()->role == 'Admin')
+                    <div class="row d-flex pt-1 pb-3" style="justify-content: space-evenly">
+                    <a href= "../productType/{{$productType->id}}/edit" class="btn btn-primary pl-4 pr-4" style="z-index: 1;">Update</a>
+                    <a href= "delete" class="btn btn-secondary pl-4 pr-4" style="z-index: 1;">Delete</a>
+                    </div>  
+                @endif
+            @endif
+            
+            
         </div>
         @endforeach
     </div>

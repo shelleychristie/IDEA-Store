@@ -59,12 +59,16 @@
                             </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
+                                    @if (Auth()->user()->role == 'Member')
+                                        {{ Auth::user()->profile->name }}
+                                    @else
+                                        Admin
+                                    @endif
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a href="/product/create" class="dropdown-item">Add product</a>
                                     <a href="/productType/create" class="dropdown-item">Add product type</a>
-                                    <a href="#" class="dropdown-item">Edit Profile</a>
+                                    <a href="/profile/edit" class="dropdown-item">Edit Profile</a>
                                     <a href="#" class="dropdown-item">Transaction History</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="{{ route('logout') }}"

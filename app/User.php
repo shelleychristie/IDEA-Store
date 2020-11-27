@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'address', 'date-of-birth', 'gender', 'role',
+        'name', 'email', 'password', 'address', 'date_of_birth', 'gender', 'role',
     ];
 
     /**
@@ -36,4 +36,25 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function cartItems(){
+        return $this->hasMany(CartItem::class);
+    }
+
+    public function profile(){
+        return $this->hasOne(Profile::class);
+    }
+
+    // protected static function boot()
+    // {
+    //     parent::boot();
+
+    //     static::created(function ($user) {
+    //         $user->profile()->create([
+    //             'title' => $user->username,
+    //         ]);
+
+    //         Mail::to($user->email)->send(new NewUserWelcomeMail());
+    //     });
+    // }
 }

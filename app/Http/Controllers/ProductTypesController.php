@@ -19,6 +19,8 @@ class ProductTypesController extends Controller
                 $imagePath = (request('image')->store('productTypes', 'public'));
                 // dd($imagePath);
                 $imageArray = ['image' => $imagePath];
+            }else{
+                $imageArray = ['image' => null];
             }
             // dd($imageArray); fine
             // dd($data['image']);
@@ -50,5 +52,37 @@ class ProductTypesController extends Controller
     
     public function edit(ProductType $productType){
         return view('productTypes.edit', compact('productType'));
+    }
+
+    public function update(\App\ProductType $productType)
+    {
+        // $this->authorize('update', $product);
+        
+        $data = request()->validate([
+            'name' => ['required', 'string', 'max:255', 'min:5'],
+            'image' => ['mimes:jpeg,gif,png'],
+        ]);
+        if (request('image')) {
+            $imagePath = (request('image')->store('products', 'public'));
+            // dd($imagePath);
+            $imageArray = ['image' => $imagePath];
+        }else{
+            $imageArray = ['image' => $productType->image];
+        }
+
+        $result = array_merge(
+            $data,
+            $imageArray ?? []
+        );
+
+        $productType->name = $result['name'];
+        $productType->image = $result['image'];
+        $productType->save();
+
+        return redirect("/product/{$productType->id}");
+    }
+
+    public function delete(ProductType $productType){
+
     }
 }

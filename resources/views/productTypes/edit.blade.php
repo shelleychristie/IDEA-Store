@@ -8,7 +8,7 @@
                 <div class="card-header">Edit Product Type</div>
 
                 <div class="card-body">
-                    <form method="POST" action="/productType/{{ $productType->id }}" enctype="multipart/form-data">
+                    <form method="POST" action="/productType/{{ $productType->id }}/update" enctype="multipart/form-data">
                         @csrf
                         @method('PATCH')
 

@@ -36,15 +36,15 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="product_type" class="col-md-4 col-form-label text-md-right">Product Type</label>
+                            <label for="product_type_id" class="col-md-4 col-form-label text-md-right">Product Type</label>
                             <div class="col-md-6">
-                                <select class="custom-select" name="product_type">
+                                <select class="custom-select" name="product_type_id">
                                     <option selected>Choose product type</option>
                                     @foreach ($productTypes as $productType)
-                                    <option value="{{$productType->id}}" {{ old('product_type') == $productType->id ? 'selected' : '' }} @error('product_type') is-invalid @enderror>{{$productType->name}}</option>
+                                    <option value="{{$productType->id}}" {{ old('product_type_id') == $productType->id ? 'selected' : '' }} @error('product_type_id') is-invalid @enderror>{{$productType->name}}</option>
                                     @endforeach
                                 </select>
-                                @error('product_type')
+                                @error('product_type_id')
                                 <span class="invalid-feedback d-inline-block" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>

@@ -15,11 +15,11 @@ class ProductTypeSeeder extends Seeder
         DB::table('product_types')->insert([
             [
                 'name' => 'Sofas',
-                'image' => 'productType/sofa.jpeg',
+                'image' => 'productTypes/sofa.jpeg',
             ],
             [
                 'name' => 'Bookshelves',
-                'image' => 'productsType/bookshelf.jpeg'
+                'image' => 'productTypes/bookshelf.jpeg'
             ],
         ]);
     }
