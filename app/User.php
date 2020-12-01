@@ -37,24 +37,16 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function cartItems(){
-        return $this->hasMany(CartItem::class);
+    public function products(){
+        return $this->belongsToMany(Product::class, 'cart_items')->using(CartItem::class)->withPivot('quantity')->withTimestamps();
     }
 
     public function profile(){
         return $this->hasOne(Profile::class);
     }
 
-    // protected static function boot()
-    // {
-    //     parent::boot();
+    public function transactions(){
+        return $this->hasMany(Transaction::class);
+    }
 
-    //     static::created(function ($user) {
-    //         $user->profile()->create([
-    //             'title' => $user->username,
-    //         ]);
-
-    //         Mail::to($user->email)->send(new NewUserWelcomeMail());
-    //     });
-    // }
 }

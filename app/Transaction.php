@@ -4,12 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Profile extends Model
+class Transaction extends Model
 {
-    protected $guarded = [];
-    protected $primaryKey = 'user_id';
     public function user(){
         return $this->belongsTo(User::class);
     }
 
+    public function transactionDetails(){
+        return $this->hasMany(TransactionDetail::class);
+    }
 }

@@ -10,7 +10,7 @@ class ProductTypesController extends Controller
     public function store()
     {
         $data = request()->validate([
-            'name' => ['required', 'string', 'max:255', 'min:5'],
+            'name' => ['required', 'string', 'max:255', 'min:4', 'unique:product_types,name'],
             'image' => ['mimes:jpeg,gif,png'],
             ]);
             
@@ -59,7 +59,7 @@ class ProductTypesController extends Controller
         // $this->authorize('update', $product);
         
         $data = request()->validate([
-            'name' => ['required', 'string', 'max:255', 'min:5'],
+            'name' => ['required', 'string', 'max:255', 'min:4', 'unique:product_types,name'],
             'image' => ['mimes:jpeg,gif,png'],
         ]);
         if (request('image')) {
@@ -79,10 +79,11 @@ class ProductTypesController extends Controller
         $productType->image = $result['image'];
         $productType->save();
 
-        return redirect("/product/{$productType->id}");
+        return redirect('/')->with(['success' => 'Update successful.']);
     }
 
     public function delete(ProductType $productType){
-
+        $productType->delete();
+        return redirect('/')->with(['success' => 'Deletion successful.']);
     }
 }

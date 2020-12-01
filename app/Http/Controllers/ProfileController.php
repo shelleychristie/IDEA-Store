@@ -14,20 +14,25 @@ class ProfileController extends Controller
         return view('profile.edit', compact('profile'));
     }
 
-    public function update(\App\Profile $profile){
+    public function update(){
+        $profile = Auth()->user()->profile;
+        // dd($profile);
         $data = request()->validate([
             'name' => ['required', 'string', 'max:255', 'min:6'],
             'address' => ['required', 'string', 'min:10'],
             'date_of_birth' => ['required', 'date', 'before:today'],
             'gender' => ['required', 'string', Rule::in(['Male', 'Female']),],
         ]);
+        
         $profile->name = $data['name'];
         $profile->address = $data['address'];
         $profile->date_of_birth = $data['date_of_birth'];
         $profile->gender = $data['gender'];
+        
         $profile->save();
+        // dd($profile);
 
-        return redirect('/');
+        return redirect()->back()->with(['success' => 'Profile update successful.']);
 
     }
 }

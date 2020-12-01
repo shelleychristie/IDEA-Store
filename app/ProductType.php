@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class ProductType extends Model
 {
-    // Use SoftDeletes;
+    Use SoftDeletes;
     protected $guarded = [];
 
     public function products(){
@@ -22,5 +22,13 @@ class ProductType extends Model
             $imagePath = 'noImage.png';
         }
         return '/storage/' . $imagePath;
+    }
+
+    public static function boot() {
+        parent::boot();
+
+        static::deleting(function($productType) {
+             $productType->products()->delete();
+        });
     }
 }

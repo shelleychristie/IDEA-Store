@@ -2,18 +2,19 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class CartItem extends Model
+class CartItem extends Pivot
 {
     protected $guarded = [];
+    protected $appends = [
+        'quantity',
+    ];
 
-    public function product(){
-        return $this->belongsTo(Product::class);
-    }
 
-    public function user(){
-        return $this->belongsTo(User::class);
-    }
+    // this is a custom model pivot table that connects user to things in their cart
+    // with additional attribute of 'quantity'
+
+
 
 }

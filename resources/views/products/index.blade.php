@@ -16,6 +16,12 @@
             </form> --}}
         </div>
     </div>
+    @if ($message = Session::get('success'))
+      <div class="alert alert-success alert-block">
+        <button type="button" class="close" data-dismiss="alert">×</button> 
+          <strong>{{ $message }}</strong>
+      </div>
+    @endif
     <div class="row d-flex justify-content-center">
         @if ($products->isNotEmpty())
             @foreach ($products as $product)
@@ -29,10 +35,12 @@
                 @endphp
                 <h4 style="text-align: center;">Rp {{$product->price}}</h4> 
                 @auth
+                @if (Auth()->user()->role == 'Admin')
                     <div class="row d-flex pt-1 pb-3" style="justify-content: space-evenly">
                     <a href= "../product/{{$product->id}}/edit" class="btn btn-primary pl-4 pr-4" style="z-index: 1;">Update</a>
-                        <a href= "delete" class="btn btn-secondary pl-4 pr-4" style="z-index: 1;">Delete</a>
+                        <a href= "../product/{{$product->id}}/delete" class="btn btn-secondary pl-4 pr-4" style="z-index: 1;" onclick="return confirm('Are you sure you want to delete this item?')">Delete</a>
                     </div>
+                @endif 
                 @endauth     
             </div>
             @endforeach

@@ -128,6 +128,12 @@ class ProductsController extends Controller
         // dd($product);
         $product->save();
 
-        return redirect("/product/{$product->id}");
+        return redirect("/product/{$product->id}")->with(['success' => 'Update successful.']);
+    }
+
+    public function delete(Product $product){
+        
+        $product->delete();
+        return redirect()->back()->with(['success' => 'Deletion successful.']);
     }
 }

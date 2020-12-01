@@ -7,11 +7,15 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
-    // use SoftDeletes;
+    use SoftDeletes;
     protected $guarded = [];
 
     public function productType(){
         return $this->belongsTo(ProductType::class);
+    }
+
+    public function users(){
+        return $this->belongsToMany(User::class,'cart_items')->using(CartItem::class)->withPivot('quantity')->withTimestamps();
     }
 
     public function getImage()
