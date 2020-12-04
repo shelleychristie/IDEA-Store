@@ -22,9 +22,13 @@
             <div class="d-flex m-3"><h5>Stock: {{$product->stock}}</h5></div>
             @if(Auth::check() && Auth()->user()->role == 'Member')
             <hr style="width: 70%">
+            @if ($product->stock < 1)
+                <div class="text-center">This product is out of stock.</div>
+            @else
             <form action="../product/{{$product->id}}/add" method="POST">
                 @csrf
                 @method('PATCH')
+                
                 <div class="form-group d-flex justify-content-center align-items-baseline pt-3">
                     <label for="quantity">Quantity: </label>
                     <input type="hidden" name="id" value="{{$product->id}}">
@@ -41,7 +45,8 @@
                     </div>
                     {{-- <small>Product type = {{}}</small> --}}
                 </form>
-                @endif
+            @endif
+            @endif
             </div>
         </div>
     </div>

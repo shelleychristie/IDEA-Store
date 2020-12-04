@@ -16,7 +16,9 @@ class CreateTransactionDetailsTable extends Migration
         Schema::create('transaction_details', function (Blueprint $table) {
             $table->id();
             $table->foreignId('transaction_id')->constrained();
-            $table->foreignId('product_id')->constrained();
+            // product_id will NOT be a foreign key because products might be deleted from database
+            // it is only here for documentation
+            $table->unsignedBigInteger('product_id');
             $table->string('name');
             $table->integer('price');
             $table->integer('quantity');

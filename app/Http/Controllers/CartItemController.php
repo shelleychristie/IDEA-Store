@@ -56,7 +56,8 @@ class CartItemController extends Controller
                     ]);
                     $quantity = $data['quantity'];
                     $user = Auth::user();
-                    $user->products()->sync([$product->id => ['quantity' => $quantity]], false);
+                    $user->products()->attach($product->id, ['quantity' => $quantity]);
+                    // $user->products()->sync([$product->id => ['quantity' => $quantity]], false);
                     return redirect()->back()->with('success', 'Successfully changed the quantity of product in cart.');
                     
                 }

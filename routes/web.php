@@ -39,3 +39,6 @@ Route::patch('/product/{product}/add', 'CartItemController@addToCart')->name('ca
 Route::get('/cart','CartItemController@show')->name('cartItem.show')->middleware('membermid');
 Route::get('/cart/{product}/delete', 'CartItemController@delete')->name('cartItem.delete')->middleware('membermid');
 Route::get('/cart/{product}/update', 'CartItemController@updateQty')->name('cartItem.update')->middleware('membermid');
+
+Route::get('/checkout', 'TransactionController@checkout')->name('checkout')->middleware('membermid');
+Route::get('/transactions', 'TransactionController@show')->name('transactions.show')->middleware('membermid');

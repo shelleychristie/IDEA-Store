@@ -72,7 +72,8 @@
                                     <a href="/product/create" class="dropdown-item">Add product</a>
                                     <a href="/productType/create" class="dropdown-item">Add product type</a>
                                     <a href="/profile/edit" class="dropdown-item">Edit Profile</a>
-                                    <a href="#" class="dropdown-item">Transaction History</a>
+                                    <a href="/cart" class="dropdown-item">Your shopping cart</a>
+                                    <a href="/transactions" class="dropdown-item">Transaction History</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();

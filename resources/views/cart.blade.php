@@ -79,11 +79,15 @@
                     <h4>Total: Rp {{$total}}</h4>
                 </div>
                 <div class="col-6">
-                    <button class="btn btn-primary float-right">Checkout</button>
+                    <form action="/checkout">
+                        @csrf
+                        <input type="submit" value="Checkout" class="btn btn-primary float-right">
+                    </form>
+                    {{-- <button class="btn btn-primary float-right">Checkout</button> --}}
                 </div>
             </div>
             @else
-            You don't have any items in your cart yet.
+            Your shopping cart is empty right now.
             @endif
         </div>    
     </div>
