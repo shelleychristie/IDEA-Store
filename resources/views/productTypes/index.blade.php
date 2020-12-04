@@ -27,7 +27,7 @@
                 @if (Auth()->user()->role == 'Admin')
                     <div class="row d-flex pt-1 pb-3" style="justify-content: space-evenly">
                     <a href= "../productType/{{$productType->id}}/edit" class="btn btn-primary pl-4 pr-4" style="z-index: 1;">Update</a>
-                    <a href= "../productType/{{$productType->id}}/delete" class="btn btn-secondary pl-4 pr-4" style="z-index: 1;" onclick="return confirm('Are you sure you want to delete this item? Deleting product type will delete all products with that type.')">Delete</a>
+                    <a href= "../productType/{{$productType->id}}/delete" class="btn btn-secondary pl-4 pr-4" style="z-index: 1;" onclick="return confirm('Are you sure you want to delete this item? Deleting product type will delete all products with that type. It will also remove all subsequent products from customer carts')">Delete</a>
                     </div>  
                 @endif
             @endif

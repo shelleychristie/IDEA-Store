@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class ProductType extends Model
 {
-    Use SoftDeletes;
     protected $guarded = [];
 
     public function products(){

@@ -38,7 +38,7 @@
                 @if (Auth()->user()->role == 'Admin')
                     <div class="row d-flex pt-1 pb-3" style="justify-content: space-evenly">
                     <a href= "../product/{{$product->id}}/edit" class="btn btn-primary pl-4 pr-4" style="z-index: 1;">Update</a>
-                        <a href= "../product/{{$product->id}}/delete" class="btn btn-secondary pl-4 pr-4" style="z-index: 1;" onclick="return confirm('Are you sure you want to delete this item?')">Delete</a>
+                        <a href= "../product/{{$product->id}}/delete" class="btn btn-secondary pl-4 pr-4" style="z-index: 1;" onclick="return confirm('Are you sure you want to delete this item? This will also remove the item from all customer carts. This action cannot be undone.')">Delete</a>
                     </div>
                 @endif 
                 @endauth     

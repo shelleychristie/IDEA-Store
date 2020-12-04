@@ -13,13 +13,11 @@ class CartItemController extends Controller
     public function show()
     {
         $total = 0;
-        $cartItems = Auth::user()->products()->withTrashed()->orderBy('created_at')->get();
+        $cartItems = Auth::user()->products()->orderBy('created_at')->get();
         foreach ($cartItems as $product) {
-            if(!$product->trashed()){
                 $price = $product->price;
                 $qty = $product->pivot->quantity;
                 $total += $price * $qty;
-            }
         }
         // dd($total);
         $total = number_format($total);

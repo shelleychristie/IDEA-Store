@@ -46,7 +46,7 @@
                                 </select>
                                 @error('product_type_id')
                                 <span class="invalid-feedback d-inline-block" role="alert">
-                                    <strong>{{ $message }}</strong>
+                                    <strong>The product type field is required.</strong>
                                 </span>
                                 @enderror
                             </div>

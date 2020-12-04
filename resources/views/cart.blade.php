@@ -16,19 +16,6 @@
     <div class="row d-flex justify-content-center">
         @if ($cartItems->isNotEmpty())
         @foreach ($cartItems as $product)
-        @if ($product->trashed())
-        <div class="col-12 d-flex pb-3 pt-3 text-center align-items-center" style="border: 1px solid lightgray; background: white;">
-            <a href="/product/{{$product->id}}"><img src="{{$product->getImage()}}" alt="" style="object-fit: cover; width:150px; height: 150px;"></a>
-            <div class="col-6">
-                This product ({{$product->name}}) has been removed and is not currently available.
-            </div>
-            
-            <form action="cart/{{$product->id}}/delete" class="mx-4 justify-content-end">
-                @csrf
-                <input type="submit" value="Remove from cart" class="btn btn-danger btn-sm">
-            </form>
-        </div>
-        @else
         <div class="col-12 pb-3 pt-3 d-flex align-items-center" style="border: 1px solid lightgray; background: white;">
                 <a href="/product/{{$product->id}}"><img src="{{$product->getImage()}}" alt="" style="object-fit: cover; width:150px; height: 150px;"></a>
             
@@ -84,8 +71,6 @@
                     {{-- </button> --}}
                     {{-- <a href="#" class="nav-link pr-3 text-danger"></a> --}}
                 </div>
-            @endif
-            
                 @endforeach
             </div>
             <hr>
@@ -100,7 +85,6 @@
             @else
             You don't have any items in your cart yet.
             @endif
-            
         </div>    
     </div>
     @endsection
