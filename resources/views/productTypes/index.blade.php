@@ -21,7 +21,7 @@
         @foreach ($productTypes as $productType)
         <div class="col-3 pb-2 pt-3 m-3" style="border: 1px solid lightgray; background: white">
         <a href="productType/{{$productType->id}}" class="stretched-link"></a>
-        <img src="{{$productType->getImage()}}" style="object-fit: cover; width:250px; height: 250px; border: 1px solid black; margin-bottom: 1em;">
+        <img src="{{$productType->getImage()}}" style="object-fit: cover; width:250px; height: 250px; margin-bottom: 1em;">
             <h4 style="text-align: center;">{{$productType->name}}</h4>
             @if (Auth::check())
                 @if (Auth()->user()->role == 'Admin')

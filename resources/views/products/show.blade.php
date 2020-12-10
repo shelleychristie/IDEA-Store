@@ -10,7 +10,7 @@
     @endif
     <div class="row d-flex my-4 py-4 justify-content-around" style="background: darkgray">
         <div class="col-5 p-3" style="">
-            <img src="{{$product->getImage()}}" alt="" style="width: 35em; height:35em; border:1px solid black">
+            <img src="{{$product->getImage()}}" alt="" style="width: 35em; height:35em;">
         </div>
         <div class="col-4 p-3" style="background: white">
             <div class="d-flex m-3 pt-3"><h2>{{$product->name}}</h2></div>
@@ -32,12 +32,12 @@
                 <div class="form-group d-flex justify-content-center align-items-baseline pt-3">
                     <label for="quantity">Quantity: </label>
                     <input type="hidden" name="id" value="{{$product->id}}">
-                    <input type="number" class="form-control col-4 ml-3" name="quantity" id="quantity" min="1" max="{{$product->stock}}">
+                <input type="number" class="form-control col-4 ml-3" name="quantity" id="quantity" min="1" max="{{$product->stock}}">
                 </div>
                 @error('quantity')
                 <div class="d-flex justify-content-center text-center">
                     <span class="invalid-feedback d-inline-block" role="alert">
-                        <strong>{{ $message }}</strong>
+                    <strong>{{$message}}</strong>
                     </span></div>
                     @enderror
                     <div class="form-group d-flex justify-content-center pt-2">
@@ -46,6 +46,11 @@
                     {{-- <small>Product type = {{}}</small> --}}
                 </form>
             @endif
+            @elseif(Auth::check() && Auth()->user()->role == 'Admin')
+            <div class="row d-flex pt-1 pb-3" style="justify-content: space-evenly">
+                <a href= "../product/{{$product->id}}/edit" class="btn btn-primary pl-4 pr-4" style="z-index: 1;">Update</a>
+                    <a href= "../product/{{$product->id}}/delete" class="btn btn-secondary pl-4 pr-4" style="z-index: 1;" onclick="return confirm('Are you sure you want to delete this item? This will also remove the item from all customer carts. This action cannot be undone.')">Delete</a>
+                </div>
             @endif
             </div>
         </div>

@@ -69,11 +69,14 @@
                                     @endif
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    @if (Auth::user()->role == 'Member')
+                                        <a href="/profile/edit" class="dropdown-item">Edit Profile</a>
+                                        <a href="/cart" class="dropdown-item">Your shopping cart</a>
+                                        <a href="/transactions" class="dropdown-item">Transaction History</a>
+                                    @else
                                     <a href="/product/create" class="dropdown-item">Add product</a>
                                     <a href="/productType/create" class="dropdown-item">Add product type</a>
-                                    <a href="/profile/edit" class="dropdown-item">Edit Profile</a>
-                                    <a href="/cart" class="dropdown-item">Your shopping cart</a>
-                                    <a href="/transactions" class="dropdown-item">Transaction History</a>
+                                    @endif
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
@@ -97,7 +100,7 @@
         </main>
         <footer class="mt-auto py-3">
             <div class="container">
-                <div class="text-muted text-center">Shelley Christie - 2020</div>
+                <div class="text-muted text-center">Shelley Christie (2201731320) & Kalyana Cecilia Libitha Tanubrata (2201744443) - 2020</div>
             </div>
         </footer>
     </div>

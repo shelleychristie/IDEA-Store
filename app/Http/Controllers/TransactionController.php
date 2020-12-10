@@ -9,10 +9,11 @@ class TransactionController extends Controller
 {
     public function checkout(){
         $transaction = auth()->user()->transactions()->create();
-        // $list = array();
         $total = 0;
         $cartItems = auth()->user()->products()->get();
         foreach ($cartItems as $product) {
+            if($product->stock > 0){
+                // if item is out of stock it will be totally ignored.
                 $price = $product->price;
                 $qty = $product->pivot->quantity;
                 $total += $price * $qty;
@@ -26,9 +27,8 @@ class TransactionController extends Controller
                 $product->stock = $product->stock - $product->pivot->quantity;
                 $product->save();
                 auth()->user()->products()->detach($product->id);
-            // array_push($list, $item);
+            }
         }
-        // dd($transaction, $total, $list);
         return $this->show();
     }
 

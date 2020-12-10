@@ -51,7 +51,6 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        // dd($data);
         return Validator::make($data, [
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed', 'alpha_num'],
@@ -70,12 +69,14 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        // when a user registers, a new user model instance is created
         $user = User::create([
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'role' => 'Member',
-            // admins cannot register and have to add themselves manually into database
+            // role is automatically member. Admins cannot register and have to add themselves manually into database
         ]);
+        // a profile is created through the user relationship
         $user->profile()->create([
             'name' => $data['name'],
             'address' => $data['address'],

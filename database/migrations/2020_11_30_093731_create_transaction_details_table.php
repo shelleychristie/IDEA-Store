@@ -17,7 +17,7 @@ class CreateTransactionDetailsTable extends Migration
             $table->id();
             $table->foreignId('transaction_id')->constrained();
             // product_id will NOT be a foreign key because products might be deleted from database
-            // it is only here for documentation
+            // this is so that even when the product is deleted, the transaction detail will still be available
             $table->unsignedBigInteger('product_id');
             $table->string('name');
             $table->integer('price');

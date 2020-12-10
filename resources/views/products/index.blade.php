@@ -10,10 +10,6 @@
                 <input class="form-control mr-sm-2" placeholder="Search" name="keyword" value="">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
-            {{-- <form class="form-inline" style="float:right;">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form> --}}
         </div>
     </div>
     @if ($message = Session::get('success'))
@@ -27,7 +23,7 @@
             @foreach ($products as $product)
             <div class="col-3 pb-2 pt-3 m-3" style="border: 1px solid lightgray; background: white; text-align:center">
             <a href="../product/{{$product->id}}" class="stretched-link"></a>
-            <img src="{{$product->getImage()}}" style="object-fit: cover; width:250px; height: 250px; border: 1px solid black; margin-bottom: 1em;">
+            <img src="{{$product->getImage()}}" style="object-fit: cover; width:250px; height: 250px; margin-bottom: 1em;">
                 <h4 style="text-align: center;">{{$product->name}}</h4>
                 <h6>{{$product->description}}</h6>
                 @php
@@ -47,8 +43,7 @@
         @else
             This product type does not have any products yet.
         @endif
-        
-        {{ $products->withQueryString()->links() }}
+        <div>{{ $products->withQueryString()->links() }}</div>
     </div>
 </div>
 @endsection
